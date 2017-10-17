@@ -179,7 +179,7 @@ mp.events.add('guiReady', () => {
     }
 
     // Action(s)
-    voiceChat_browser = mp.browsers.new('https://example.org/voiceChat/html/iframes.html?player_id=' + player.id + '&MAX_PLAYERS=' + MAX_PLAYERS);
+    voiceChat_browser = mp.browsers.new('https://example.org/voiceChat/html/iframes.html?player_id=' + player.id + '&MAX_PLAYERS=' + MAX_PLAYERS + '&ran=' + Date.now());
     voiceChat_browser.active = true;
 
 });
