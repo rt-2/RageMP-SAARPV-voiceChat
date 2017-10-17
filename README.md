@@ -11,3 +11,8 @@ This script use the [PeerJS API](https://github.com/peers/peerjs) which is based
     - Your hostname [here](https://github.com/rt-2/RageMP-SAARPV-voiceChat/blob/master/html/iframe.html#L42) and [here](https://github.com/rt-2/RageMP-SAARPV-voiceChat/blob/master/voiceChat_client.js#L182);
  - Restart your server
  - Enjoy?
+
+This project is not near ready to release its first stable version, but as soon as it was presentable, I though it was best to put the code open source because of 2 reasons: for RageMP in general to improve, and for this plugin to develop faster.
+There is a lot of cleaning to do bare with me, I released this so bugs can be fixed, I do not expect you guys to clean my code.
+
+Thank you for the testing: Amata, Austin, BlackBlitch, Bouzigoloum, James Cole, Kiper, LukEL, Mos, StreetGT.
