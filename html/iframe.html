@@ -1,0 +1,264 @@
+<html>
+	<head>
+
+		<script type="text/javascript" src="./dist/jquery-3.2.1.min.js"></script>
+		<script type="text/javascript" src="./dist/peer.js"></script>
+
+		<script>
+
+			// $_GET Var(s)
+			var $_GET = {};
+			if (document.location.toString().indexOf('?') !== -1) {
+				var query = document.location
+				.toString()
+				// get the query string
+				.replace(/^.*?\?/, '')
+				// and remove any existing hash string (thanks, @vrijdenker)
+				.replace(/#.*$/, '')
+				.split('&');
+
+				for (var i = 0, l = query.length; i < l; i++) {
+					var aux = decodeURIComponent(query[i]).split('=');
+					$_GET[aux[0]] = aux[1];
+				}
+			}
+			
+		</script>
+	  
+		<script>
+		
+			//
+			// Init
+			//
+			
+			// Var(s)
+			let called_someone = false;
+			let this_player_id = parseInt($_GET['this_player_id']);
+			let other_player_id = parseInt($_GET['other_player_id']);
+			let myid = this_player_id+'-'+other_player_id;
+			let otherid = other_player_id+'-'+this_player_id;
+			
+			// instantiate connection
+			let peer = new Peer(myid, { host: 'example.org', port: 9000, path: '/voiceChat'});
+			
+			
+			//
+			// Event(s)
+			//
+			
+			// Connection to server is opened
+			peer.on('open', function(){
+				
+				// Messages
+				$('#my-id').text(peer.id);
+				$('#test_S').css('color', 'green');
+			  
+			});
+		
+			// Receiving a call
+			peer.on('call', function(call){
+				
+				// Answer the call
+				call.answer();
+				
+				// If call exists, close it
+				if (window.existingCallR) {
+					//
+				}
+				
+				// When call opened, stream to audio tag
+				call.on('stream', function(stream){
+					$('#audio').prop('src', URL.createObjectURL(stream));
+				});
+				
+				// Var(s)
+				window.existingCallR = call;
+				
+				// Events
+				call.on('close', function () {
+				
+					//
+					
+					//
+					$('#test_R').css('color', 'yellow');
+					
+				});
+				
+				// Messages
+				$('#test_R').css('color', 'green');
+				
+			});
+			
+			// Call closes with error
+			peer.on('error', function(err){
+				
+				// Error essages
+				//alert(err.message);
+				if(typeof mp !== 'undefined')
+				{
+					mp.trigger('voiceChat_browserError', err.message);
+				}
+				else
+				{
+					console.log('voiceChat_browserError: ' + err.message);
+				}
+				// Actions
+				_CloseCalls();
+				_TryReconnectCallT();
+				
+				//
+				$('#test_S').css('color', 'yellow');
+			  
+			});
+		
+		
+			//
+			// Private function(s)
+			//
+			
+			// Trying to reconnect the call on closing
+			function _CloseCalls () {
+			
+				// If there actually was calls
+				//if (window.existingCallR) window.existingCallR.close();
+				//if (window.existingCallT) window.existingCallT.close();
+				$('#test_R').css('color', 'red');
+				$('#test_T').css('color', 'red');
+				
+			}
+		
+			// Trying to reconnect the call on closing
+			function _TryReconnectCallT () {
+			
+				// If there actually was a call
+				if(called_someone)
+				{
+					InitiateCall();
+				}
+			}
+		
+		
+			//
+			// Public function(s)
+			//
+			
+			// Close this whole connection
+			function Close () {
+				
+				//
+				_CloseCalls();
+				
+			}
+		
+			//
+			function InitiateCall() {
+			
+				// Initiate the call
+				var call = peer.call(otherid, window.localStream);
+
+				// Var(s)
+				called_someone = true;
+				
+				// If call exists, close it
+				if (window.existingCallT) {
+					//
+				}
+
+				// When call opened, stream to audio tag
+				call.on('stream', function(stream){
+					//
+				});
+				
+				// Var(s)
+				window.existingCallT = call;
+				
+				// Events
+				call.on('close', function () {
+				
+					//
+					$('#test_T').css('color', 'yellow');
+					
+					//
+					_TryReconnectCallT();
+					
+				});
+				
+				// Messages
+				
+				$('#other-id').text(call.peer);
+				$('#test_T').css('color', 'green');
+				
+			}
+			
+			// Adjust the volume of the audio stream
+			function SetVolume(level) {
+				
+				
+				// Action
+				$('#audio').prop('volume', level);
+				
+				// Message
+				$('#my-volume').text(parseFloat(level).toFixed(3));
+				
+			}
+
+			
+			//
+			// DOM Entrance
+			//
+			
+			$(document).ready(function () {
+			
+				// Get microphone access
+				navigator.getUserMedia({audio: true, video: false}, function(stream){
+					window.localStream = stream;
+				}, function(){ /* No Mic */ });
+	  
+				SetVolume(0.0);
+				
+				$('#test_S').css('color', 'red');
+				$('#test_R').css('color', 'red');
+				$('#test_T').css('color', 'red');
+				
+				if(typeof mp !== 'undefined') mp.trigger('voiceChat_iframeReadyToInitOtherPlayer', other_player_id);
+				
+			});
+			
+	  </script>
+	  
+		<style>
+			body {
+				background-color: rgba(0, 0, 0, 0.75);
+				border: 3px white solid;
+				color: white;
+				font-size: 14px;
+				text-align: center;
+			}
+		</style>
+	  
+	</head>
+
+	<body>
+
+		<audio id="audio_R" volume="0.0" autoplay></audio>
+		<audio id="audio" volume="0.0" autoplay></audio>
+		
+		<div id="" style="color: white">
+		
+			&nbsp;|&nbsp;
+			
+			<span id="test_S" style="font-weight: bold;">S</span> <span id="test_R" style="font-weight: bold;">R</span> <span id="test_T" style="font-weight: bold;">T</span> 
+			&nbsp;|&nbsp;
+			
+			<span id="my-id">...</span> => <span id="other-id">...</span>
+			&nbsp;|&nbsp;
+			
+			V: <span id="my-volume">...</span>
+			&nbsp;|&nbsp;
+			
+		</div>
+		
+		
+		
+	</body>
+</html>
