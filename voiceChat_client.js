@@ -48,35 +48,28 @@ function voiceChat_volumeTimer(other_player) {
         // Init 
         let player = mp.players.local;
 
-        if (Functions.IsPlayerValid(player)) {
+        let distance = Functions.PosDistanceFromPos(other_player.position, player.position);
 
 
-            let distance = Functions.PosDistanceFromPos(other_player.position, player.position);
+        if (distance < VOICECHAT_MAX_HEAR_DIST) {
 
+        let volume = 1.0 / VOICECHAT_MAX_HEAR_DIST * distance;
+        volume = volume * -1 + 1.0;
 
-            if (
-                Functions.IsPlayerValid(player) &&
-                distance < VOICECHAT_MAX_HEAR_DIST
-            ) {
+        // Only set if data is new
+        if (volume != player_lastVolumeSetForPlayer[other_player.id]) {
 
-                let volume = 1.0 / VOICECHAT_MAX_HEAR_DIST * distance;
-                volume = volume * -1 + 1.0;
-
-                // Only set if data is new
-                if (volume != player_lastVolumeSetForPlayer[other_player.id]) {
-
-                    player_lastVolumeSetForPlayer[other_player.id] = volume;
-                    voiceChat_browser.execute('SetOtherPlayerLevel(' + other_player.id + ', "' + volume + '");');
-                }
+            player_lastVolumeSetForPlayer[other_player.id] = volume;
+            voiceChat_browser.execute('SetOtherPlayerLevel(' + other_player.id + ', "' + volume + '");');
+        }
 
 
 
-            }
-            else {
+        }
+        else {
                 if (player_lastVolumeSetForPlayer[other_player.id] != 0.0) {
                     voiceChat_browser.execute('SetOtherPlayerLevel(' + other_player.id + ', "0.0");');
                 }
-            }
         }
 
         setTimeout(function () { voiceChat_volumeTimer(other_player); }, VOICECHAT_VOL_TIMER_INTERVAL);
@@ -187,10 +180,8 @@ mp.events.add('guiReady', () => {
 // Other player streams in
 mp.events.add('entityStreamIn', (entity) => {
 
-    // Init 
-    let player = mp.players.local;
-
-    if (Functions.IsPlayerValid(player)) {
+        // Init 
+        let player = mp.players.local;
 
         if (entity.type == "player") {
 
@@ -202,11 +193,10 @@ mp.events.add('entityStreamIn', (entity) => {
             player_isStreamingOtherPlayer[other_player.id] = true;
 
             voiceChat_browser.execute('AddOtherPlayerInRange(' + other_player.id + ', "' + other_player.name + '");');
-            
+
             voiceChat_proximityTimer(other_player);
 
         }
-    }
 });
 
 //
