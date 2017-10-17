@@ -2,7 +2,7 @@
 <html>
 <head>
 	
-	<link rel="stylesheet" type="text/css" href="./dist/voiceChat.css" />
+    <link rel="stylesheet" type="text/css" href="./dist/voiceChat.css" />
 	
     <script src="./dist/jquery-3.2.1.min.js"></script>
 
@@ -30,25 +30,25 @@
 
     <script>
 	
-        window.MAX_PLAYERS = $_GET['MAX_PLAYERS'];
+	window.MAX_PLAYERS = $_GET['MAX_PLAYERS'];
         window.this_player_id = $_GET['player_id'];
         window.players_active = [MAX_PLAYERS];
 
         function AddOtherPlayerInRange(other_player_id, other_player_name) { // javasccript:AddOtherPlayerInRange(0, 'Yanick_Coulombe')
 
-			RemoveOtherPlayerIframe(other_player_id);
+		RemoveOtherPlayerIframe(other_player_id);
 		
-            window.players_active[other_player_id] = true;
+            	window.players_active[other_player_id] = true;
 
-            $('#iframes_container').append('<iframe id="iframe_for_'+other_player_id+'" class="for_'+other_player_id+'" style="height: 40px;" src="./iframe.html?this_player_id=' + this_player_id + '&other_player_id=' + other_player_id + '&ran='+Date.now()+'"></iframe>');
-			$('#labels_container').append('<div id="name_for_'+other_player_id+'" class="name_labels for_'+other_player_id+'" style="opacity: 0.0;" volume="0.0">[' + other_player_id + '] ' + other_player_name + '</iframe>');
+            	$('#iframes_container').append('<iframe id="iframe_for_'+other_player_id+'" class="for_'+other_player_id+'" style="height: 40px;" src="./iframe.html?this_player_id=' + this_player_id + '&other_player_id=' + other_player_id + '&ran='+Date.now()+'"></iframe>');
+		$('#labels_container').append('<div id="name_for_'+other_player_id+'" class="name_labels for_'+other_player_id+'" style="opacity: 0.0;" volume="0.0">[' + other_player_id + '] ' + other_player_name + '</iframe>');
 
         }
         function RemoveOtherPlayerInRange(other_player_id) {
 
-            window.players_active[other_player_id] = false;
+            	window.players_active[other_player_id] = false;
 
-			RemoveOtherPlayerIframe(other_player_id);
+		RemoveOtherPlayerIframe(other_player_id);
         }
 		
         function RemoveOtherPlayerIframe(other_player_id) {
@@ -68,20 +68,20 @@
 		
         $(document).ready(function () {
 
-			// Get microphone access (Before legit windows, to avoid the 'alt-tab' bug)
-			navigator.getUserMedia({audio: true, video: false}, function(stream){
-				window.localStream = stream;
-			}, function(){ /* No Mic */ });
-				
-			setInterval(function SortNameList()
-			{
-				$(function() {
-				  $("#labels_container div").sort(sort_names).appendTo('#labels_container');
-				  function sort_names(a, b) {
-					return ($(b).attr('volume')) > ($(a).attr('volume')) ? 1 : -1;
-				  }
-				});
-			}, 280);
+		// Get microphone access (Before legit windows, to avoid the 'alt-tab' bug)
+		navigator.getUserMedia({audio: true, video: false}, function(stream){
+			window.localStream = stream;
+		}, function(){ /* No Mic */ });
+
+		setInterval(function SortNameList()
+		{
+			$(function() {
+			  $("#labels_container div").sort(sort_names).appendTo('#labels_container');
+			  function sort_names(a, b) {
+				return ($(b).attr('volume')) > ($(a).attr('volume')) ? 1 : -1;
+			  }
+			});
+		}, 280);
 			
         });
 
@@ -93,11 +93,11 @@
 			//-webkit-text-stroke: 1px gray;
 			color: white;
 			text-shadow:
-			   1px 1px 0 #000,
-			 -1px -1px 0 #000,  
-			  1px -1px 0 #000,
-			  -1px 1px 0 #000,
-			   1px 1px 0 #000;
+			   1px  1px 0 #000,
+			  -1px -1px 0 #000,  
+			   1px -1px 0 #000,
+			  -1px  1px 0 #000,
+			   1px  1px 0 #000;
 		}
 		
 	</style>
