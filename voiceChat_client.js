@@ -85,7 +85,7 @@ function voiceChat_volumeTimer(other_player) {
 
     }
     catch (err) {
-        mp.gui.chat.push('!{yellow}The error: !{white}' + err.message);
+        //mp.gui.chat.push('!{yellow}The error: !{white}' + err.message);
     }
 
 }
@@ -148,7 +148,7 @@ function voiceChat_proximityTimer(other_player) {
         }
     }
     catch (err) {
-        mp.gui.chat.push('!{yellow}The error: !{white}' + err.message);
+        //mp.gui.chat.push('!{yellow}The error: !{white}' + err.message);
     }
 
 }
@@ -228,6 +228,16 @@ mp.events.add('voiceChat_playerReadyToInitOtherPlayer', (other_player_id) => {
 
     // Actions
     player_isOtherPlayerReady[other_player_id] = true;
+
+});
+mp.events.add('voiceChat_otherPlayerDisconnects', (other_player_id) => {
+
+
+    // Actions
+    player_isStreamingOtherPlayer[other_player_id] = false;
+
+    mp.gui.chat.push('RemoveOtherPlayerInRange(' + other_player_id + '); at ' + Date.now() + '');
+    voiceChat_browser.execute('RemoveOtherPlayerInRange(' + other_player_id + ');');
 
 });
 
