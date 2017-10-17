@@ -142,7 +142,7 @@ function voiceChat_proximityTimer(other_player) {
                 }
             }
             else {
-                mp.gui.chat.push('voiceChat_proximityTimer_test out of \'other_player\';');
+                //mp.gui.chat.push('voiceChat_proximityTimer_test out of \'other_player\';');
 
             }
         }
@@ -197,16 +197,12 @@ mp.events.add('entityStreamIn', (entity) => {
             // Init
             let other_player = entity;
 
-            mp.gui.chat.push('Created')
-
             // Actions
             player_isOtherPlayerReady[other_player.id] = false;
             player_isStreamingOtherPlayer[other_player.id] = true;
 
-            mp.gui.chat.push('AddOtherPlayerInRange(' + other_player.id + ', "' + other_player.name + '"); at ' + Date.now() + '');
             voiceChat_browser.execute('AddOtherPlayerInRange(' + other_player.id + ', "' + other_player.name + '");');
             
-            mp.gui.chat.push('Adding voiceChat_proximityTimer(' + other_player.id + '); at ' + Date.now() + '');
             voiceChat_proximityTimer(other_player);
 
         }
@@ -236,7 +232,6 @@ mp.events.add('voiceChat_otherPlayerDisconnects', (other_player_id) => {
     // Actions
     player_isStreamingOtherPlayer[other_player_id] = false;
 
-    mp.gui.chat.push('RemoveOtherPlayerInRange(' + other_player_id + '); at ' + Date.now() + '');
     voiceChat_browser.execute('RemoveOtherPlayerInRange(' + other_player_id + ');');
 
 });
@@ -252,7 +247,6 @@ mp.events.add('entityStreamOut', (entity) => {
         // Actions
         player_isStreamingOtherPlayer[other_player.id] = false;
 
-        mp.gui.chat.push('RemoveOtherPlayerInRange(' + other_player.id + '); at ' + Date.now() + '');
         voiceChat_browser.execute('RemoveOtherPlayerInRange(' + other_player.id + ');');
 
         mp.events.callRemote("voiceChat_PlayerStreamPlayerOut", other_player);
@@ -263,7 +257,7 @@ mp.events.add('entityStreamOut', (entity) => {
 // Receive and echo any browser errors
 mp.events.add('voiceChat_browserError', (error_text) => {
 
-    mp.gui.chat.push('!{F00}Browser error: !{FFF}' + error_text);
+    //mp.gui.chat.push('!{F00}Browser error: !{FFF}' + error_text);
 
 });
 
