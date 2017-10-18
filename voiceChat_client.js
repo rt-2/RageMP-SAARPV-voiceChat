@@ -34,6 +34,20 @@ let voiceChat_browser = null;
 
 
 //
+//  Function(s)  BEGIN
+//
+
+function voiceChat_PosDistanceFromPos(position1, position2) {
+
+    return Math.sqrt(Math.pow(position2.x - position1.x, 2) + Math.pow(position2.y - position1.y, 2) + Math.pow(position2.z - position1.z, 2));
+}
+
+//
+//  Function(s)  BEGIN
+//
+
+
+//
 //  Timer(s)  BEGIN
 //
 
@@ -48,7 +62,7 @@ function voiceChat_volumeTimer(other_player) {
         // Init 
         let player = mp.players.local;
 
-        let distance = Functions.PosDistanceFromPos(other_player.position, player.position);
+        let distance = voiceChat_PosDistanceFromPos(other_player.position, player.position);
 
 
         if (distance < VOICECHAT_MAX_HEAR_DIST) {
@@ -98,7 +112,7 @@ function voiceChat_proximityTimer(other_player) {
 
 
 
-                    let distance = Functions.PosDistanceFromPos(other_player.position, player.position);
+                    let distance = voiceChat_PosDistanceFromPos(other_player.position, player.position);
 
 
                     if (distance < 100.0) {
