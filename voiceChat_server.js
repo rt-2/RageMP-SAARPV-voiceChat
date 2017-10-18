@@ -78,7 +78,6 @@ mp.events.add('playerQuit', (player, exitType, reason) => {
         }
 
     }
-    voiceChat_otherPlayerDisconnects
 
 });
 
