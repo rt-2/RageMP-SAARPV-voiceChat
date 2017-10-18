@@ -128,8 +128,6 @@ function voiceChat_proximityTimer(other_player) {
 
                             player_isCloseToOtherPlayer[other_player.id] = true;
 
-
-                            mp.gui.chat.push('InitCall(' + other_player.id + '); at ' + Date.now() + '');
                             voiceChat_browser.execute('InitCall(' + other_player.id + ');');
 
                             voiceChat_volumeTimer(other_player);
