@@ -94,61 +94,43 @@ function voiceChat_volumeTimer(other_player) {
 
 function voiceChat_proximityTimer(other_player) {
 
+    if (
+        other_player &&
+        other_player.type == "player" &&
+        player_isStreamingOtherPlayer[other_player.id]
+    ) {
 
-    try {
-        if (other_player) {
+        // Init 
+        let player = mp.players.local;
 
-            if (other_player.type == "player") {
+        let distance = PosDistanceFromPos(other_player.position, player.position);
 
-                if (player_isStreamingOtherPlayer[other_player.id]) {
+        if (distance < 100.0) {
 
-                    // Init 
-                    let player = mp.players.local;
+            // MOVED
+            if (
+                !player_isCloseToOtherPlayer[other_player.id] &&
+                player_isOtherPlayerReady[other_player.id]
+            ) {
 
+                // Actions
+                player_isCloseToOtherPlayer[other_player.id] = true;
 
+                voiceChat_browser.execute('InitCall(' + other_player.id + ');');
 
-                    let distance = voiceChat_PosDistanceFromPos(other_player.position, player.position);
+                voiceChat_volumeTimer(other_player);
 
-
-                    if (distance < 100.0) {
-
-                        // MOVED
-                        if (
-                            !player_isCloseToOtherPlayer[other_player.id] &&
-                            player_isOtherPlayerReady[other_player.id]
-                        ) {
-
-
-                            // Actions
-
-                            player_isCloseToOtherPlayer[other_player.id] = true;
-
-                            voiceChat_browser.execute('InitCall(' + other_player.id + ');');
-
-                            voiceChat_volumeTimer(other_player);
-
-                        }
-
-                    }
-                    else {
-                        if (player_isCloseToOtherPlayer[other_player.id]) {
-                            // Actions
-                            player_isCloseToOtherPlayer[other_player.id] = false;
-                        }
-                    }
-
-                    setTimeout(function () { voiceChat_proximityTimer(other_player); }, VOICECHAT_PROX_TIMER_INTERVAL);
-
-                }
             }
-            else {
-                //mp.gui.chat.push('voiceChat_proximityTimer_test out of \'other_player\';');
 
+        }
+        else {
+            if (player_isCloseToOtherPlayer[other_player.id]) {
+                // Actions
+                player_isCloseToOtherPlayer[other_player.id] = false;
             }
         }
-    }
-    catch (err) {
-        //mp.gui.chat.push('!{yellow}The error: !{white}' + err.message);
+
+        setTimeout(function () { voiceChat_proximityTimer(other_player); }, VOICECHAT_PROX_TIMER_INTERVAL);
     }
 
 }
