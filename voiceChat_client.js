@@ -53,11 +53,11 @@ function voiceChat_PosDistanceFromPos(position1, position2) {
 
 function voiceChat_volumeTimer(other_player) {
         
-    try {
     if (
+        other_player &&
         other_player.type == 'player' &&
         player_isCloseToOtherPlayer[other_player.id]
-        ) {
+    ) {
 
         // Init 
         let player = mp.players.local;
@@ -88,11 +88,6 @@ function voiceChat_volumeTimer(other_player) {
 
         setTimeout(function () { voiceChat_volumeTimer(other_player); }, VOICECHAT_VOL_TIMER_INTERVAL);
 
-    }
-
-    }
-    catch (err) {
-        //mp.gui.chat.push('!{yellow}The error: !{white}' + err.message);
     }
 
 }
