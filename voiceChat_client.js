@@ -65,20 +65,21 @@ function voiceChat_volumeTimer(other_player) {
         let distance = voiceChat_PosDistanceFromPos(other_player.position, player.position);
 
 
-        if (distance < VOICECHAT_MAX_HEAR_DIST) {
+        if (
+            player_isVoicable &&
+            distance < VOICECHAT_MAX_HEAR_DIST
+        ) {
 
-        let volume = 1.0 / VOICECHAT_MAX_HEAR_DIST * distance;
-        volume = volume * -1 + 1.0;
+            let volume = 1.0 / VOICECHAT_MAX_HEAR_DIST * distance;
+            volume = volume * -1 + 1.0;
 
-        // Only set if data is new
-        if (volume != player_lastVolumeSetForPlayer[other_player.id]) {
+            // Only set if data is new
+            if (volume != player_lastVolumeSetForPlayer[other_player.id]) {
 
-            player_lastVolumeSetForPlayer[other_player.id] = volume;
-            voiceChat_browser.execute('SetOtherPlayerLevel(' + other_player.id + ', "' + volume + '");');
-        }
-
-
-
+                player_lastVolumeSetForPlayer[other_player.id] = volume;
+                voiceChat_browser.execute('SetOtherPlayerLevel(' + other_player.id + ', "' + volume + '");');
+            }
+            
         }
         else {
                 if (player_lastVolumeSetForPlayer[other_player.id] != 0.0) {
