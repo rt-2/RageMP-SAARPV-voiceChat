@@ -16,7 +16,7 @@ const VOICECHAT_PROX_TIMER_INTERVAL = 1000;
 const VOICECHAT_VOL_TIMER_INTERVAL = 120;
 
 // Execution var(s)
-let player_isVoicable = new Array(MAX_PLAYERS);
+let player_isVoicable = true;
 let player_isStreamingOtherPlayer = new Array(MAX_PLAYERS);
 let player_isOtherPlayerReady = new Array(MAX_PLAYERS);
 let player_isCloseToOtherPlayer = new Array(MAX_PLAYERS);
