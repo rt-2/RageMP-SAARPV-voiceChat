@@ -14,6 +14,7 @@ This script use the [PeerJS API](https://github.com/peers/peerjs) which is based
  - Enjoy?
 
 **How to use:** 
+
 The voice chat is always on by default, to disable it:
  - Client-side: ``voiceChat.Toggle(false);``;
  - Server-side: ``voiceChat.Toggle(player, false);``;
