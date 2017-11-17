@@ -16,7 +16,7 @@ const PROXIMITY_TIMER_INTERVAL = 1000;
 const VOLUME_TIMER_INTERVAL = 120;
 
 // Execution var(s)
-let player_isVoicable = true;
+let _isVoiceToggled = true;
 let player_isStreamingOtherPlayer = new Array(MAX_PLAYERS);
 let player_isOtherPlayerReady = new Array(MAX_PLAYERS);
 let player_isCloseToOtherPlayer = new Array(MAX_PLAYERS);
@@ -71,7 +71,7 @@ function _volumeTimer(other_player) {
 
 
         if (
-            player_isVoicable &&
+            _isVoiceToggled &&
             distance < MAX_HEARING_DIST
         ) {
 
