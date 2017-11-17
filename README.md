@@ -6,7 +6,7 @@ This script use the [PeerJS API](https://github.com/peers/peerjs) which is based
 **Installation:**
  - Place the content of `./html/` on your secure http server;
  - Run `npm install peer` in your RageMP server directory. This should add [PeerJS Server](https://github.com/peers/peerjs-server) and its dependendies in your 'node_modules' folder;
- - Include `let voiceChat = require './voiceChat_client.js';` and `let voiceChat = require './voiceChat_server.js';` into your script;
+ - Include `let voiceChat = require './voiceChat_client.js';` and `let voiceChat = require './voiceChat_server.js';` at the top of your scripts;
  - Change the default value in the files:
     - Your hostname [here](https://github.com/rt-2/RageMP-SAARPV-voiceChat/blob/master/html/iframe.html#L42) and [here](https://github.com/rt-2/RageMP-SAARPV-voiceChat/blob/master/voiceChat_client.js#L182);
     - Have a `MAX_PLAYERS` constant set on client and server side;
