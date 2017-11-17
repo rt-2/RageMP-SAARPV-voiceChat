@@ -17,7 +17,7 @@ const VOLUME_TIMER_INTERVAL = 120;
 
 // Execution var(s)
 let _isVoiceToggled = true;
-let player_isStreamingOtherPlayer = new Array(MAX_PLAYERS);
+let _isStreamingOtherPlayer = new Array(MAX_PLAYERS);
 let player_isOtherPlayerReady = new Array(MAX_PLAYERS);
 let player_isCloseToOtherPlayer = new Array(MAX_PLAYERS);
 let player_lastVolumeSetForPlayer = new Array(MAX_PLAYERS);
@@ -162,7 +162,7 @@ mp.events.add('guiReady', () => {
     for (let i = 0; i < MAX_PLAYERS; i++) {
 
         player_isOtherPlayerReady[i] = false;
-        player_isStreamingOtherPlayer[i] = false;
+        _isStreamingOtherPlayer[i] = false;
         player_isCloseToOtherPlayer[i] = false;
     }
 
@@ -185,7 +185,7 @@ mp.events.add('entityStreamIn', (entity) => {
 
             // Actions
             player_isOtherPlayerReady[other_player.id] = false;
-            player_isStreamingOtherPlayer[other_player.id] = true;
+            _isStreamingOtherPlayer[other_player.id] = true;
 
             voiceChat_browser.execute('AddOtherPlayerInRange(' + other_player.id + ', "' + other_player.name + '");');
 
@@ -215,7 +215,7 @@ mp.events.add('voiceChat_otherPlayerDisconnects', (other_player_id) => {
 
 
     // Actions
-    player_isStreamingOtherPlayer[other_player_id] = false;
+    _isStreamingOtherPlayer[other_player_id] = false;
 
     voiceChat_browser.execute('RemoveOtherPlayerInRange(' + other_player_id + ');');
 
@@ -230,7 +230,7 @@ mp.events.add('entityStreamOut', (entity) => {
         let other_player = entity;
 
         // Actions
-        player_isStreamingOtherPlayer[other_player.id] = false;
+        _isStreamingOtherPlayer[other_player.id] = false;
 
         voiceChat_browser.execute('RemoveOtherPlayerInRange(' + other_player.id + ');');
 
