@@ -42,7 +42,7 @@ exports =
     
     
 }
-function voiceChat_PosDistanceFromPos(position1, position2) {
+function _PosDistanceFromPos(position1, position2) {
 
     return Math.sqrt(Math.pow(position2.x - position1.x, 2) + Math.pow(position2.y - position1.y, 2) + Math.pow(position2.z - position1.z, 2));
 }
@@ -67,7 +67,7 @@ function voiceChat_volumeTimer(other_player) {
         // Init 
         let player = mp.players.local;
 
-        let distance = voiceChat_PosDistanceFromPos(other_player.position, player.position);
+        let distance = _PosDistanceFromPos(other_player.position, player.position);
 
 
         if (
@@ -109,7 +109,7 @@ function voiceChat_proximityTimer(other_player) {
         // Init 
         let player = mp.players.local;
 
-        let distance = PosDistanceFromPos(other_player.position, player.position);
+        let distance = _PosDistanceFromPos(other_player.position, player.position);
 
         if (distance < 100.0) {
 
