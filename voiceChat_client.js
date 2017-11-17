@@ -56,7 +56,7 @@ function _PosDistanceFromPos(position1, position2) {
 //  Timer(s)  BEGIN
 //
 
-function voiceChat_volumeTimer(other_player) {
+function _volumeTimer(other_player) {
         
     if (
         other_player &&
@@ -92,7 +92,7 @@ function voiceChat_volumeTimer(other_player) {
                 }
         }
 
-        setTimeout(function () { voiceChat_volumeTimer(other_player); }, VOLUME_TIMER_INTERVAL);
+        setTimeout(function () { _volumeTimer(other_player); }, VOLUME_TIMER_INTERVAL);
 
     }
 
@@ -124,7 +124,7 @@ function voiceChat_proximityTimer(other_player) {
 
                 voiceChat_browser.execute('InitCall(' + other_player.id + ');');
 
-                voiceChat_volumeTimer(other_player);
+                _volumeTimer(other_player);
 
             }
 
