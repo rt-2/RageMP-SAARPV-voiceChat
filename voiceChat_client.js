@@ -20,7 +20,7 @@ let _isVoiceToggled = true;
 let _isStreamingOtherPlayer = new Array(MAX_PLAYERS);
 let _isOtherPlayerReady = new Array(MAX_PLAYERS);
 let _isInProximityOfOtherPlayer = new Array(MAX_PLAYERS);
-let player_lastVolumeSetForPlayer = new Array(MAX_PLAYERS);
+let _lastVolumeSetForPlayer = new Array(MAX_PLAYERS);
 
 // Entitie(s)
 
@@ -79,15 +79,15 @@ function _volumeTimer(other_player) {
             volume = volume * -1 + 1.0;
 
             // Only set if data is new
-            if (volume != player_lastVolumeSetForPlayer[other_player.id]) {
+            if (volume != _lastVolumeSetForPlayer[other_player.id]) {
 
-                player_lastVolumeSetForPlayer[other_player.id] = volume;
+                _lastVolumeSetForPlayer[other_player.id] = volume;
                 voiceChat_browser.execute('SetOtherPlayerLevel(' + other_player.id + ', "' + volume + '");');
             }
             
         }
         else {
-                if (player_lastVolumeSetForPlayer[other_player.id] != 0.0) {
+                if (_lastVolumeSetForPlayer[other_player.id] != 0.0) {
                     voiceChat_browser.execute('SetOtherPlayerLevel(' + other_player.id + ', "0.0");');
                 }
         }
