@@ -19,7 +19,7 @@ const VOLUME_TIMER_INTERVAL = 120;
 let _isVoiceToggled = true;
 let _isStreamingOtherPlayer = new Array(MAX_PLAYERS);
 let _isOtherPlayerReady = new Array(MAX_PLAYERS);
-let player_isCloseToOtherPlayer = new Array(MAX_PLAYERS);
+let _isInProximityOfOtherPlayer = new Array(MAX_PLAYERS);
 let player_lastVolumeSetForPlayer = new Array(MAX_PLAYERS);
 
 // Entitie(s)
@@ -61,7 +61,7 @@ function _volumeTimer(other_player) {
     if (
         other_player &&
         other_player.type == 'player' &&
-        player_isCloseToOtherPlayer[other_player.id]
+        _isInProximityOfOtherPlayer[other_player.id]
     ) {
 
         // Init 
@@ -115,12 +115,12 @@ function _proximityTimer(other_player) {
 
             // MOVED
             if (
-                !player_isCloseToOtherPlayer[other_player.id] &&
+                !_isInProximityOfOtherPlayer[other_player.id] &&
                 _isOtherPlayerReady[other_player.id]
             ) {
 
                 // Actions
-                player_isCloseToOtherPlayer[other_player.id] = true;
+                _isInProximityOfOtherPlayer[other_player.id] = true;
 
                 voiceChat_browser.execute('InitCall(' + other_player.id + ');');
 
@@ -130,9 +130,9 @@ function _proximityTimer(other_player) {
 
         }
         else {
-            if (player_isCloseToOtherPlayer[other_player.id]) {
+            if (_isInProximityOfOtherPlayer[other_player.id]) {
                 // Actions
-                player_isCloseToOtherPlayer[other_player.id] = false;
+                _isInProximityOfOtherPlayer[other_player.id] = false;
             }
         }
 
@@ -163,7 +163,7 @@ mp.events.add('guiReady', () => {
 
         _isOtherPlayerReady[i] = false;
         _isStreamingOtherPlayer[i] = false;
-        player_isCloseToOtherPlayer[i] = false;
+        _isInProximityOfOtherPlayer[i] = false;
     }
 
     // Action(s)
