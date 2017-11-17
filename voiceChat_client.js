@@ -98,7 +98,7 @@ function _volumeTimer(other_player) {
 
 }
 
-function voiceChat_proximityTimer(other_player) {
+function _proximityTimer(other_player) {
 
     if (
         other_player &&
@@ -136,7 +136,7 @@ function voiceChat_proximityTimer(other_player) {
             }
         }
 
-        setTimeout(function () { voiceChat_proximityTimer(other_player); }, PROXIMITY_TIMER_INTERVAL);
+        setTimeout(function () { _proximityTimer(other_player); }, PROXIMITY_TIMER_INTERVAL);
     }
 
 }
@@ -189,7 +189,7 @@ mp.events.add('entityStreamIn', (entity) => {
 
             voiceChat_browser.execute('AddOtherPlayerInRange(' + other_player.id + ', "' + other_player.name + '");');
 
-            voiceChat_proximityTimer(other_player);
+            _proximityTimer(other_player);
 
         }
 });
