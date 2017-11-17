@@ -18,7 +18,7 @@ const VOLUME_TIMER_INTERVAL = 120;
 // Execution var(s)
 let _isVoiceToggled = true;
 let _isStreamingOtherPlayer = new Array(MAX_PLAYERS);
-let player_isOtherPlayerReady = new Array(MAX_PLAYERS);
+let _isOtherPlayerReady = new Array(MAX_PLAYERS);
 let player_isCloseToOtherPlayer = new Array(MAX_PLAYERS);
 let player_lastVolumeSetForPlayer = new Array(MAX_PLAYERS);
 
@@ -116,7 +116,7 @@ function _proximityTimer(other_player) {
             // MOVED
             if (
                 !player_isCloseToOtherPlayer[other_player.id] &&
-                player_isOtherPlayerReady[other_player.id]
+                _isOtherPlayerReady[other_player.id]
             ) {
 
                 // Actions
@@ -161,7 +161,7 @@ mp.events.add('guiReady', () => {
     // Var(s) 
     for (let i = 0; i < MAX_PLAYERS; i++) {
 
-        player_isOtherPlayerReady[i] = false;
+        _isOtherPlayerReady[i] = false;
         _isStreamingOtherPlayer[i] = false;
         player_isCloseToOtherPlayer[i] = false;
     }
@@ -184,7 +184,7 @@ mp.events.add('entityStreamIn', (entity) => {
             let other_player = entity;
 
             // Actions
-            player_isOtherPlayerReady[other_player.id] = false;
+            _isOtherPlayerReady[other_player.id] = false;
             _isStreamingOtherPlayer[other_player.id] = true;
 
             voiceChat_browser.execute('AddOtherPlayerInRange(' + other_player.id + ', "' + other_player.name + '");');
@@ -208,7 +208,7 @@ mp.events.add('voiceChat_playerReadyToInitOtherPlayer', (other_player_id) => {
 
 
     // Actions
-    player_isOtherPlayerReady[other_player_id] = true;
+    _isOtherPlayerReady[other_player_id] = true;
 
 });
 mp.events.add('voiceChat_otherPlayerDisconnects', (other_player_id) => {
