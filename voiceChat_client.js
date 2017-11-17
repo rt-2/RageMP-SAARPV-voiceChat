@@ -12,7 +12,7 @@
 
 // Constant(s)
 const MAX_HEARING_DIST = 35.0;
-const VOICECHAT_PROX_TIMER_INTERVAL = 1000;
+const PROXIMITY_TIMER_INTERVAL = 1000;
 const VOICECHAT_VOL_TIMER_INTERVAL = 120;
 
 // Execution var(s)
@@ -136,7 +136,7 @@ function voiceChat_proximityTimer(other_player) {
             }
         }
 
-        setTimeout(function () { voiceChat_proximityTimer(other_player); }, VOICECHAT_PROX_TIMER_INTERVAL);
+        setTimeout(function () { voiceChat_proximityTimer(other_player); }, PROXIMITY_TIMER_INTERVAL);
     }
 
 }
