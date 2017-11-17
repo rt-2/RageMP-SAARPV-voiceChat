@@ -11,7 +11,7 @@
 
 
 // Constant(s)
-const VOICECHAT_MAX_HEAR_DIST = 35.0;
+const MAX_HEARING_DIST = 35.0;
 const VOICECHAT_PROX_TIMER_INTERVAL = 1000;
 const VOICECHAT_VOL_TIMER_INTERVAL = 120;
 
@@ -72,10 +72,10 @@ function voiceChat_volumeTimer(other_player) {
 
         if (
             player_isVoicable &&
-            distance < VOICECHAT_MAX_HEAR_DIST
+            distance < MAX_HEARING_DIST
         ) {
 
-            let volume = 1.0 / VOICECHAT_MAX_HEAR_DIST * distance;
+            let volume = 1.0 / MAX_HEARING_DIST * distance;
             volume = volume * -1 + 1.0;
 
             // Only set if data is new
