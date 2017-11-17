@@ -200,6 +200,14 @@ mp.events.add('entityStreamIn', (entity) => {
 });
 
 //
+mp.events.add('voiceChat_playerToggle', (value) => {
+
+    // Actions
+    Toggle(value);
+
+});
+
+//
 mp.events.add('voiceChat_iframeReadyToInitOtherPlayer', (other_player_id) => {
 
 
@@ -216,6 +224,8 @@ mp.events.add('voiceChat_playerReadyToInitOtherPlayer', (other_player_id) => {
     _isOtherPlayerReady[other_player_id] = true;
 
 });
+
+//
 mp.events.add('voiceChat_otherPlayerDisconnects', (other_player_id) => {
 
 
