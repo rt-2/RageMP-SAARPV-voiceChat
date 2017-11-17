@@ -3,7 +3,7 @@ A peer-to-peer in-game proximity voice chat for [RageMP](https://rage.mp/) devel
 
 This script use the [PeerJS API](https://github.com/peers/peerjs) which is based on [WebRTC](https://webrtc.org/).
 
-**Installation:**
+**Installation:** 
  - Place the content of `./html/` on your secure http server;
  - Run `npm install peer` in your RageMP server directory. This should add [PeerJS Server](https://github.com/peers/peerjs-server) and its dependendies in your 'node_modules' folder;
  - Include `let voiceChat = require './voiceChat_client.js';` and `let voiceChat = require './voiceChat_server.js';` at the top of your scripts;
@@ -13,7 +13,7 @@ This script use the [PeerJS API](https://github.com/peers/peerjs) which is based
  - Restart your server
  - Enjoy?
 
-**How to use:**
+**How to use:** 
 The voice chat is always on by default, to disable it:
  - Client-side: ``voiceChat.Toggle(false);``;
  - Server-side: ``voiceChat.Toggle(player, false);``;
