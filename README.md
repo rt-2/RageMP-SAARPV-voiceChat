@@ -13,6 +13,11 @@ This script use the [PeerJS API](https://github.com/peers/peerjs) which is based
  - Restart your server
  - Enjoy?
 
+**How to use:**
+The voice chat is always on by default, to disable it:
+ - Client-side: ``voiceChat.Toggle(false);``;
+ - Server-side: ``voiceChat.Toggle(player, false);``;
+
 This project is not near ready to release its first stable version, but as soon as it was presentable, I though it was best to put the code open source because of 2 reasons: for RageMP in general to improve, and for this plugin to develop faster.
 There is a lot of cleaning to do bare with me, I released this so bugs can be fixed, I do not expect you guys to clean my code.
 
