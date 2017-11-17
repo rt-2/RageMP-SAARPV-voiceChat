@@ -55,6 +55,7 @@ function voiceChat_volumeTimer(other_player) {
         
     if (
         other_player &&
+        typeof other_player.type !== "undefined" &&
         other_player.type == 'player' &&
         player_isCloseToOtherPlayer[other_player.id]
     ) {
@@ -96,6 +97,7 @@ function voiceChat_proximityTimer(other_player) {
 
     if (
         other_player &&
+        typeof other_player.type !== "undefined" &&
         other_player.type == "player" &&
         player_isStreamingOtherPlayer[other_player.id]
     ) {
