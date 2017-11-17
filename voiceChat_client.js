@@ -37,6 +37,11 @@ let voiceChat_browser = null;
 //  Function(s)  BEGIN
 //
 
+exports =
+{
+    
+    
+}
 function voiceChat_PosDistanceFromPos(position1, position2) {
 
     return Math.sqrt(Math.pow(position2.x - position1.x, 2) + Math.pow(position2.y - position1.y, 2) + Math.pow(position2.z - position1.z, 2));
