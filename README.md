@@ -1,5 +1,5 @@
 # RageMP-SAARPV-voiceChat
-A peer-to-peer in-game proximity voice chat for [RageMP](https://rage.mp/) developped for [San Andreas Advanced Roleplay V](https://v.sa-arp.net/).
+A peer-to-peer in-game proximity voice chat for [RageMP](https://rage.mp/) developped for [San Andreas Advanced Roleplay V](https://v.sa-arp.net/)
 
 This script use the [PeerJS API](https://github.com/peers/peerjs) which is based on [WebRTC](https://webrtc.org/).
 
@@ -14,6 +14,8 @@ This script use the [PeerJS API](https://github.com/peers/peerjs) which is based
  - Enjoy?
 
 This project is not near ready to release its first stable version, but as soon as it was presentable, I though it was best to put the code open source because of 2 reasons: for RageMP in general to improve, and for this plugin to develop faster.
-There is a lot of cleaning to do bare with me, I released this so bugs can be fixed, I do not expect you guys to clean my code.
+There is a lot of cleaning to do bare with me, I released this so bugs can be fixed, I do not expect you guys to clean my code
+
+Also I am aiming toward a VoIP version of this (server-side, not peer-to-peer). I continue the project when possible.
 
 Thank you for the testing: Amata, Austin, BlackBlitch, Bouzigoloum, James Cole, Kiper, LukEL, Mos, StreetGT.
