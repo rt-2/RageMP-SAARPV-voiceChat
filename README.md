@@ -19,3 +19,5 @@ There is a lot of cleaning to do bare with me, I released this so bugs can be fi
 Also I am aiming toward a VoIP version of this (server-side, not peer-to-peer). I continue the project when possible.
 
 Thank you for the testing: Amata, Austin, BlackBlitch, Bouzigoloum, James Cole, Kiper, LukEL, Mos, StreetGT.
+
+**EDIT: THe server-side version will not be public, because I got disrespected heavily by the staffs of "rage multiplayer" I do not want to contribute to their community anymore**
