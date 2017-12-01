@@ -20,4 +20,4 @@ Also I am aiming toward a VoIP version of this (server-side, not peer-to-peer). 
 
 Thank you for the testing: Amata, Austin, BlackBlitch, Bouzigoloum, James Cole, Kiper, LukEL, Mos, StreetGT.
 
-**EDIT: The server-side version will not be public, because I got disrespected heavily by the staffs of "rage multiplayer" (instantly permanently banned for discussing a bug without warning and being called a 12yo when complaining) I do not want to contribute to their community anymore and will be developing for myself only, please forward any complaints to the rage-mp staffs directly.**
+**EDIT: A server-side version of this is coming up for SA-ARP, not sure if will be open source yet.**
