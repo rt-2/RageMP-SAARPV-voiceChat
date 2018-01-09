@@ -22,4 +22,4 @@ Thank you for the help: Amata, Austin, BlackBlitch, Bouzigoloum, James Cole, Kip
 
 **EDIT: A server-side version of this is coming up for SA-ARP, not sure if will be open source yet.**
 
-**IMPORTANT: This plugin has NOT BEEN UPDATED since 'the bridge' because we are working on a server-side version. If you want to use the currently updated client-side one, contact at rt-2( @ t )rt-2.net or on Discord (rt-2#6159).**
+**IMPORTANT: This plugin has NOT BEEN UPDATED since 'the bridge' because we are working on a server-side version. If you want to use the currently updated client-side one, contact me at rt-2( @ t )rt-2.net or on Discord (rt-2#6159).**
