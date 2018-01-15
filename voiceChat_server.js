@@ -21,6 +21,25 @@ let voiceChat_PlayerReadyForOtherPlayer = new Array(MAX_PLAYERS);
 //
 
 
+//
+//  Function(s)  BEGIN
+//
+
+module.exports =
+{
+    Toggle: function (player, value) {
+
+        player.call('voiceChat_playerToggle', value);
+
+    }
+
+}
+
+//
+//  Function(s)  BEGIN
+//
+
+
 console.log('Initializing voiceChat script;');
 
 for (let i = 0; i < voiceChat_PlayerReadyForOtherPlayer.length; i++) {
