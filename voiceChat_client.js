@@ -16,6 +16,7 @@ const VOICECHAT_PROX_TIMER_INTERVAL = 1000;
 const VOICECHAT_VOL_TIMER_INTERVAL = 120;
 
 // Execution var(s)
+let MAX_PLAYERS = 30;
 let player_isVoicable = new Array(MAX_PLAYERS);
 let player_isStreamingOtherPlayer = new Array(MAX_PLAYERS);
 let player_isOtherPlayerReady = new Array(MAX_PLAYERS);
@@ -105,7 +106,7 @@ function voiceChat_proximityTimer(other_player) {
         // Init 
         let player = mp.players.local;
 
-        let distance = PosDistanceFromPos(other_player.position, player.position);
+        let distance = voiceChat_PosDistanceFromPos(other_player.position, player.position);
 
         if (distance < 100.0) {
 
@@ -193,7 +194,7 @@ mp.events.add('entityStreamIn', (entity) => {
 //
 mp.events.add('voiceChat_iframeReadyToInitOtherPlayer', (other_player_id) => {
 
-
+	player_isOtherPlayerReady[other_player_id] = true;
     // Actions
     mp.events.callRemote("voiceChat_PlayerStreamPlayerIn", other_player_id);
 
@@ -238,7 +239,7 @@ mp.events.add('entityStreamOut', (entity) => {
 // Receive and echo any browser errors
 mp.events.add('voiceChat_browserError', (error_text) => {
 
-    //mp.gui.chat.push('!{F00}Browser error: !{FFF}' + error_text);
+    mp.gui.chat.push('!{F00}Browser error: !{FFF}' + error_text);
 
 });
 
