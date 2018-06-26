@@ -167,7 +167,7 @@ mp.events.add('guiReady', () => {
     let player = mp.players.local;
 
     // Action(s)
-    voiceChat_browser = mp.browsers.new(SAARP_IGASSETS_QUERYURL + 'voiceChat/iframes.html?player_id=' + player.remoteId + '&MAX_PLAYERS=' + MAX_PLAYERS + '&' + Date.now());
+    voiceChat_browser = mp.browsers.new(SAARP_IGASSETS_QUERYURL + 'voiceChat/?player_id=' + player.remoteId + '&MAX_PLAYERS=' + MAX_PLAYERS + '&' + Date.now());
     voiceChat_browser.active = true;
 
 });
