@@ -11,6 +11,7 @@
 
 
 // Constant(s)
+const VOICECHAT_QUERYURL = "https://example.org/voicechat_dir/";
 const MAX_HEARING_DIST = 35.0;
 const PROXIMITY_TIMER_INTERVAL = 1000;
 const VOLUME_TIMER_INTERVAL = 120;
@@ -167,7 +168,7 @@ mp.events.add('guiReady', () => {
     let player = mp.players.local;
 
     // Action(s)
-    voiceChat_browser = mp.browsers.new(SAARP_IGASSETS_QUERYURL + 'voiceChat/?player_id=' + player.remoteId + '&MAX_PLAYERS=' + MAX_PLAYERS + '&' + Date.now());
+    voiceChat_browser = mp.browsers.new(VOICECHAT_QUERYURL + '/?player_id=' + player.remoteId + '&MAX_PLAYERS=' + MAX_PLAYERS + '&' + Date.now());
     voiceChat_browser.active = true;
 
 });
