@@ -18,4 +18,7 @@ There is a lot of cleaning to do bare with me, I released this so bugs can be fi
 
 I was aiming toward a VoIP version of this (server-side, not peer-to-peer), but if RAGE implements p2p on it's own there is no reason anymore to do so.
 
-Thank you for the help: Amata, Austin, BlackBlitch, Bouzigoloum, James Cole, Kiper, LukEL, Mos, StreetGT, Tobias.
+Thank you for your contribution:
+                Kar.
+Thank you for the help:
+                Amata, Austin, BlackBlitch, Bouzigoloum, James Cole, Kiper, LukEL, Mos, StreetGT, Tobias.
