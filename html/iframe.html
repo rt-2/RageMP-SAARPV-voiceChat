@@ -39,9 +39,9 @@
 			let otherid = other_player_id+'-'+this_player_id;
 			
 			// instantiate connection
-			let peer = new Peer(myid, { host: 'v.sa-arp.net', port: 9000, path: '/saarpv'});
-			
-			
+			let peer = new Peer(myid, { host: 'example.org', port: 9000, path: '/voicechat_dir'});
+
+
 			//
 			// Event(s)
 			//
@@ -107,7 +107,6 @@
 				
 				//
 				$('#test_S').css('color', 'yellow');
-			  
 			});
 		
 		
@@ -117,7 +116,6 @@
 			
 			// Trying to reconnect the call on closing
 			function _CloseCalls () {
-			
 				// If there actually was calls
 				$('#test_R').css('color', 'red');
 				$('#test_T').css('color', 'red');
@@ -126,7 +124,6 @@
 		
 			// Trying to reconnect the call on closing
 			function _TryReconnectCallT () {
-			
 				// If there actually was a call
 				if(called_someone)
 				{
@@ -141,15 +138,11 @@
 			
 			// Close this whole connection
 			function Close () {
-				
-				//
 				_CloseCalls();
-				
 			}
 		
 			//
 			function InitiateCall() {
-			
 				// Initiate the call
 				var call = peer.call(otherid, window.localStream);
 
@@ -189,8 +182,6 @@
 			
 			// Adjust the volume of the audio stream
 			function SetVolume(level) {
-				
-				
 				// Action
 				$('#audio').prop('volume', level);
 				
@@ -254,8 +245,6 @@
 			&nbsp;|&nbsp;
 			
 		</div>
-		
-		
-		
+
 	</body>
 </html>

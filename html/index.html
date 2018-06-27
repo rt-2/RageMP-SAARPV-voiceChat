@@ -2,91 +2,89 @@
 <html>
 <head>
 	
-    <link rel="stylesheet" type="text/css" href="./dist/voiceChat.css" />
+	<link rel="stylesheet" type="text/css" href="./dist/voiceChat.css" />
 	
-    <script src="./dist/jquery-3.2.1.min.js"></script>
+	<script src="./dist/jquery-3.2.1.min.js"></script>
 
-    <script>
+	<script>
 
-        self.global = window;
+		self.global = window;
 
-        var $_GET = {};
-        if (document.location.toString().indexOf('?') !== -1) {
-            var query = document.location
-            .toString()
-            // get the query string
-            .replace(/^.*?\?/, '')
-            // and remove any existing hash string (thanks, @vrijdenker)
-            .replace(/#.*$/, '')
-            .split('&');
+		var $_GET = {};
+		if (document.location.toString().indexOf('?') !== -1) {
+			var query = document.location
+			.toString()
+			// get the query string
+			.replace(/^.*?\?/, '')
+			// and remove any existing hash string (thanks, @vrijdenker)
+			.replace(/#.*$/, '')
+			.split('&');
 
-            for (var i = 0, l = query.length; i < l; i++) {
-                var aux = decodeURIComponent(query[i]).split('=');
-                $_GET[aux[0]] = aux[1];
-            }
-        }
+			for (var i = 0, l = query.length; i < l; i++) {
+				var aux = decodeURIComponent(query[i]).split('=');
+				$_GET[aux[0]] = aux[1];
+			}
+		}
 
-    </script>
+	</script>
 
-    <script>
+	<script>
 	
-	window.MAX_PLAYERS = $_GET['MAX_PLAYERS'];
-        window.this_player_id = $_GET['player_id'];
-        window.players_active = [MAX_PLAYERS];
+		window.MAX_PLAYERS = $_GET['MAX_PLAYERS'];
+		window.this_player_id = $_GET['player_id'];
+		window.players_active = [MAX_PLAYERS];
 
-        function AddOtherPlayerInRange(other_player_id, other_player_name) { // javasccript:AddOtherPlayerInRange(0, 'Yanick_Coulombe')
+		function AddOtherPlayerInRange(other_player_id, other_player_name) { // javascript:AddOtherPlayerInRange(0, 'Yanick_Coulombe')
 
-		RemoveOtherPlayerIframe(other_player_id);
+			RemoveOtherPlayerIframe(other_player_id);
 		
-            	window.players_active[other_player_id] = true;
+			window.players_active[other_player_id] = true;
 
-            	$('#iframes_container').append('<iframe id="iframe_for_'+other_player_id+'" class="for_'+other_player_id+'" style="height: 40px;" src="./iframe.html?this_player_id=' + this_player_id + '&other_player_id=' + other_player_id + '&ran='+Date.now()+'"></iframe>');
-		$('#labels_container').append('<div id="name_for_'+other_player_id+'" class="name_labels for_'+other_player_id+'" style="opacity: 0.0;" volume="0.0">[' + other_player_id + '] ' + other_player_name + '</iframe>');
+			$('#iframes_container').append('<iframe id="iframe_for_'+other_player_id+'" class="for_'+other_player_id+'" style="height: 40px;" src="./iframe.html?this_player_id=' + this_player_id + '&other_player_id=' + other_player_id + '&ran='+Date.now()+'"></iframe>');
+			$('#labels_container').append('<div id="name_for_'+other_player_id+'" class="name_labels for_'+other_player_id+'" style="opacity: 0.0;" volume="0.0">[' + other_player_id + '] ' + other_player_name + '</iframe>');
 
-        }
-        function RemoveOtherPlayerInRange(other_player_id) {
-
-            	window.players_active[other_player_id] = false;
-
-		RemoveOtherPlayerIframe(other_player_id);
-        }
+		}
+		function RemoveOtherPlayerInRange(other_player_id) {
+			window.players_active[other_player_id] = false;
+			RemoveOtherPlayerIframe(other_player_id);
+		}
 		
-        function RemoveOtherPlayerIframe(other_player_id) {
+		function RemoveOtherPlayerIframe(other_player_id) {
 		
-            if($('#iframe_for_'+other_player_id)[0]) $('#iframe_for_'+other_player_id)[0].contentWindow.Close();
-            $('.for_' + other_player_id).remove();
-        }
-        function SetOtherPlayerLevel(other_player_id, level) { // javasccript:SetOtherPlayerLevel(0, 0.0)
-            if($('#iframe_for_'+other_player_id)[0]) $('#iframe_for_'+other_player_id)[0].contentWindow.SetVolume(level);
-            $('#name_for_'+other_player_id).css('opacity', level);
-            $('#name_for_'+other_player_id).attr('volume', level);
-        }
-        function InitCall(other_player_id) {
-            $('#iframe_for_'+other_player_id)[0].contentWindow.InitiateCall();
-        }
+			if($('#iframe_for_'+other_player_id)[0]) $('#iframe_for_'+other_player_id)[0].contentWindow.Close();
+			$('.for_' + other_player_id).remove();
+		}
+		function SetOtherPlayerLevel(other_player_id, level) { // javasccript:SetOtherPlayerLevel(0, 0.0)
+			if($('#iframe_for_'+other_player_id)[0]) $('#iframe_for_'+other_player_id)[0].contentWindow.SetVolume(level);
+			$('#name_for_'+other_player_id).css('opacity', level);
+			$('#name_for_'+other_player_id).attr('volume', level);
+		}
+		function InitCall(other_player_id) {
+			$('#iframe_for_'+other_player_id)[0].contentWindow.InitiateCall();
+		}
 
 		
-        $(document).ready(function () {
+		$(document).ready(function () {
 
-		// Get microphone access (Before legit windows, to avoid the 'alt-tab' bug)
-		navigator.getUserMedia({audio: true, video: false}, function(stream){
-			window.localStream = stream;
-		}, function(){ /* No Mic */ });
+			// Get microphone access (Before legit windows, to avoid the 'alt-tab' bug)
+			navigator.getUserMedia({audio: true, video: false}, function(stream){
+				window.localStream = stream;
+			}, function(){ /* No Mic */ });
 
-		setInterval(function SortNameList()
-		{
-			$(function() {
-			  $("#labels_container div").sort(sort_names).appendTo('#labels_container');
-			  function sort_names(a, b) {
-				return ($(b).attr('volume')) > ($(a).attr('volume')) ? 1 : -1;
-			  }
-			});
-		}, 280);
+			setInterval(function SortNameList()
+			{
+				$(function() {
+				  $("#labels_container div").sort(sort_names).appendTo('#labels_container');
+				  function sort_names(a, b) {
+					return ($(b).attr('volume')) > ($(a).attr('volume')) ? 1 : -1;
+				  }
+				});
+			}, 280);
 			
-        });
+		});
 
 		
-    </script>
+	</script>
 
 	<style>
 		#labels_container .name_labels {
@@ -104,7 +102,7 @@
 
 </head>
 <body>
-    <div id="iframes_container" style="display:none;"></div>
-    <div id="labels_container"></div>
+	<div id="iframes_container" style="display:none;"></div>
+	<div id="labels_container"></div>
 </body>
 </html>

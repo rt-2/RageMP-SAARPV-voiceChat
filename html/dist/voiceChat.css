@@ -1,17 +1,12 @@
-﻿
-* {
+﻿* {
     margin: 0 0;
     padding: 0 0;
     border-spacing: 0px;
     box-sizing: content-box;
 }
-@font-face {
-    font-family: "GTAV_font_6";
-    src: url('./font6.ttf') format("truetype");
-}
 
 #iframes_container {
-	//display: none;
+	display: none;
 }
 
 #labels_container {
@@ -25,7 +20,6 @@
     position: relative;
     width: 100%;
     height: auto;
-    font-family: GTAV_font_6;
     font-size: 25px;
     font-weight: bold;
     text-align: center;
