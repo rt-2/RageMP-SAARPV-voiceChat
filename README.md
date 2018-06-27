@@ -9,6 +9,7 @@ This script use the [PeerJS API](https://github.com/peers/peerjs) which is based
  - Include `./voiceChat_client.js` and `./voiceChat_server.js` into your script;
  - Change the default value in the files:
     - Your hostname [here](https://github.com/rt-2/RageMP-SAARPV-voiceChat/blob/master/voiceChat_client.js#L14) and [here](https://github.com/rt-2/RageMP-SAARPV-voiceChat/blob/master/html/iframe.html#L42);
+    - Path to your SSL certs [here](https://github.com/rt-2/RageMP-SAARPV-voiceChat/blob/master/voiceChat_server.js#L54);
     - Have a `MAX_PLAYERS` constant set on client and server side;
  - Restart your server
  - Enjoy?
