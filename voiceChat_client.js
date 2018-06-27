@@ -35,7 +35,7 @@ let voiceChat_browser = null;
 //  Function(s)  BEGIN
 //
 
-module.exports =
+exports =
 {
 	toggleVoiceChat: function (value) {
 		_isVoiceToggled = value;
