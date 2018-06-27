@@ -131,7 +131,7 @@ function _proximityTimer(other_player_id) {
 
 // Client Init
 
-mp.events.add('playerReady', () => {
+mp.events.add('guiReady', () => {
 
 	// Init 
 	let player = mp.players.local;
@@ -154,14 +154,12 @@ mp.events.add('entityStreamIn', (entity) => {
 		let player = mp.players.local;
 		let other_player = entity;
 
-		// Actions
 		_isOtherPlayerReady[other_player.remoteId] = false;
 		_isStreamingOtherPlayer[other_player.remoteId] = true;
 
 		voiceChat_browser.execute('AddOtherPlayerInRange(' + other_player.remoteId + ', "' + other_player.name + '");');
 
 		_proximityTimer(other_player.remoteId);
-
 	}
 });
 
@@ -178,7 +176,7 @@ mp.events.add('voiceChat_iframeReadyToInitOtherPlayer', (other_player_id) => {
 
 mp.events.add('voiceChat_iframeReadyToFixMouse', () => {
 	//mp.gui.chat.push('voiceChat_iframeReadyToFixMouse');
-	SetCursorVisible(false);
+	mp.gui.cursor.visible = false;
 });
 
 
@@ -198,7 +196,6 @@ mp.events.add('entityStreamOut', (entity) => {
 		// Init
 		let other_player = entity;
 
-		// Actions
 		_isStreamingOtherPlayer[other_player.remoteId] = false;
 
 		voiceChat_browser.execute('RemoveOtherPlayerInRange(' + other_player.remoteId + ');');
