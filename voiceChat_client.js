@@ -131,7 +131,7 @@ function _proximityTimer(other_player_id) {
 
 // Client Init
 
-mp.events.add('playerReady', () => {
+mp.events.add('guiReady', () => {
 
 	// Init 
 	let player = mp.players.local;
