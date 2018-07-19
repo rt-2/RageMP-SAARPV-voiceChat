@@ -39,7 +39,7 @@ module.exports =
 //
 
 
-console.log(SAARP_SYSTYPE_GENERAL, 'Initializing voiceChat script;');
+console.log('Initializing voiceChat script;');
 
 for (let i = 0; i < voiceChat_PlayerReadyForOtherPlayer.length; i++) {
 
@@ -57,10 +57,10 @@ var server = PeerServer({
     path: '/saarpv'
 });
 
-console.log(SAARP_SYSTYPE_GENERAL, 'Started PeerJS server at 9000 port.');
+console.log('Started PeerJS server at 9000 port.');
 
 
-console.log(SAARP_SYSTYPE_GENERAL, 'Completed voiceChat initializing;');
+console.log('Completed voiceChat initializing;');
 
 
 //
