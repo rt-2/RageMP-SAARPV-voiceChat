@@ -1,4 +1,6 @@
 # RageMP-SAARPV-voiceChat
+**This is out of date, please use this: https://rage.mp/files/file/112-local-voice-chat-3d/**
+
 A peer-to-peer in-game proximity voice chat for [RageMP](https://rage.mp/) developped for [San Andreas Advanced Roleplay V](https://v.sa-arp.net/)
 
 This script use the [PeerJS API](https://github.com/peers/peerjs) which is based on [WebRTC](https://webrtc.org/).
